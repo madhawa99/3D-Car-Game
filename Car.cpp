@@ -1,7 +1,6 @@
 #include "Car.h"
-#include <iostream>
-#include <cmath>
-#include <gl/glut.h>
+#include <cmath>  
+#include <Gl/glut.h>
 
 
 
@@ -11,16 +10,6 @@ void Car::draw(float r, float g, float b) {
 	glRotatef(-90, 0, 1, 0);
 	glScalef(0.62, 0.99, 0.9);
 
-
-	// front lights
-	glPushMatrix();
-	glColor3f(1, 1, 1);
-	glPointSize(12);
-	glBegin(GL_POINTS);
-	glVertex3f(0.19, 0.3, 0.3);
-	glVertex3f(0.19, 0.3, 0.5);
-	glEnd();
-	glPopMatrix();
 
 	// back lights
 	glColor3f(0.439, 0.035, 0.035);
@@ -37,24 +26,6 @@ void Car::draw(float r, float g, float b) {
 	glVertex3f(2.11, 0.34, 0.25);
 	glVertex3f(2.11, 0.29, 0.25);
 	glVertex3f(2.11, 0.29, 0.33);
-	glEnd();
-
-
-	// borders
-	glColor3f(0.29, 0.2, 0.3);
-	glBegin(GL_LINE_LOOP);
-	glVertex3f(2.1, 0.4, 0.6);
-	glVertex3f(2.1, 0.4, 0.2);
-	glVertex3f(2.1, 0.2, 0.2);
-	glVertex3f(2.1, 0.2, 0.6);
-	glEnd();
-
-	glColor3f(0.4, 0.2, 0.3);
-	glBegin(GL_LINE_LOOP);
-	glVertex3f(1.8, 0.5, 0.6);
-	glVertex3f(1.8, 0.5, 0.2);
-	glVertex3f(2.1, 0.4, 0.2);
-	glVertex3f(2.1, 0.4, 0.6);
 	glEnd();
 
 
@@ -112,7 +83,7 @@ void Car::draw(float r, float g, float b) {
 	//***************************back guard******************************
 
 
-	glColor3f(r, g, b);            /* Set The Color To Blue*/
+	glColor3f(r, g, b);            
 	glVertex3f(1.8, 0.5, 0.6);
 	glVertex3f(1.8, 0.5, 0.2);
 	glVertex3f(2.1, 0.4, 0.2);
@@ -144,7 +115,9 @@ void Car::draw(float r, float g, float b) {
 	glVertex3f(1.8, 0.5, 0.6);
 	glVertex3f(2.1, 0.4, 0.6);
 	glVertex3f(2.1, 0.2, 0.6);
+
 	//******************MIDDLE BODY************************************
+
 	glColor3f(r, g, b);
 	glVertex3f(0.6, 0.5, 0.6);
 	glVertex3f(0.6, 0.2, 0.6);
@@ -162,7 +135,9 @@ void Car::draw(float r, float g, float b) {
 	glVertex3f(0.6, 0.2, 0.2);
 	glVertex3f(1.8, 0.2, 0.2);
 	glVertex3f(1.8, 0.5, 0.2);
+
 	//*********************ENTER WINDOW**********************************
+
 	glColor3f(0.3, 0.3, 0.3);
 	glVertex3f(0.77, 0.63, 0.2);
 	glVertex3f(0.75, 0.5, 0.2);        //quad front window
@@ -246,7 +221,7 @@ void Car::draw(float r, float g, float b) {
 	glEnd();
 
 
-	glBegin(GL_TRIANGLES);                /* start drawing the cube.*/
+	glBegin(GL_TRIANGLES);               
 
 	/* top of cube*/
 	glColor3f(0.3, 0.3, 0.3);
