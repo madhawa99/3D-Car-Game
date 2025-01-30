@@ -12,12 +12,15 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <Gl/stb_image.h>
 #include <stdio.h>
+#include <SOIL2.h>
 
 #define ESC 27
 using namespace std;
 
 
-string projectPath = "F:\\Graphic project\\Project\\3d-car-game-glut-main\\";
+
+
+string projectPath = "C:\\Users\\Elsayed\\source\\repos\\GraphicsProject\\";
 string texturesPath = projectPath + "textures\\";
 
 int screenWidth, screenHeight;
@@ -31,6 +34,8 @@ unsigned int textures[10];
 int collectedCoins;
 bool win, gameover;
 float coinAngle;
+unsigned char* textureImage;
+GLuint tex;
 
 struct Coin {
 	float x, z;
@@ -76,6 +81,18 @@ bool loadTexture(const string& filename, int textureIndex) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 // Coins  & Obstacles handling
 float random(float min = 0, float max = RAND_MAX) {
 	if (min > max) swap(max, min);
@@ -116,6 +133,10 @@ float calculateDistance(float x1, float y1, float z1, float x2, float y2, float 
 
 bool intersect(float a1, float b1, float a2, float b2) {
 
+	/*
+		a1---------------b1
+				  a2---------b2
+	*/
 
 	if (a1 > b2 || a2 > b1) {
 		return false;
@@ -136,7 +157,7 @@ int coinsCollision() {
 				float distance3 = calculateDistance(carX - X[j], 0, carZ + 0.63, coinCenterX, 0, coinCenterZ);
 
 				if (distance <= X[j] + coinRadius - 0.07 || distance2 <= X[j] + coinRadius - 0.06 || distance3 <= X[j] + coinRadius - 0.05) {
-
+					
 					coins[i].colided = true;
 					return 1 + coins[i].special * 9;
 				}
@@ -221,6 +242,7 @@ void drawObstacles() {
 	glBindTexture(GL_TEXTURE_2D, textures[4]);
 	for (int i = 0; i < obstacles.size(); i++) {
 		float x1 = obstacles[i].x1, x2 = obstacles[i].x2, z = obstacles[i].z; x1 -= 0.19;
+
 		glBegin(GL_QUADS);
 
 		//back
@@ -270,22 +292,6 @@ void drawRoad() {
 	glTexCoord2d(0.0f, 0.0f); glVertex3f(roadRight, 0, roadStart);
 	glEnd();
 
-	// Right side
-	glBindTexture(GL_TEXTURE_2D, textures[2]);
-	glBegin(GL_POLYGON);
-	glTexCoord2d(0.0f, 1.0f); glVertex3f(roadRight, 0, roadStart);
-	glTexCoord2d(0.0f, 0.0f); glVertex3f(roadRight, 3, roadStart);
-	glTexCoord2d(30.0f, 0.0f); glVertex3f(roadRight, 3, roadEnd);
-	glTexCoord2d(30.0f, 1.0f); glVertex3f(roadRight, 0, roadEnd);
-	glEnd();
-
-	// Left side
-	glBegin(GL_POLYGON);
-	glTexCoord2d(30.0f, 1.0f); glVertex3f(roadLeft, 0, roadEnd);
-	glTexCoord2d(30.0f, 0.0f); glVertex3f(roadLeft, 3, roadEnd);
-	glTexCoord2d(0.0f, 0.0f); glVertex3f(roadLeft, 3, roadStart);
-	glTexCoord2d(0.0f, 1.0f); glVertex3f(roadLeft, 0, roadStart);
-	glEnd();
 
 
 	// Sky
@@ -528,9 +534,10 @@ void init() {
 	initLighting();
 
 	loadTexture("road.bmp", 1);
-	loadTexture("blu-sky.bmp", 3);
+	loadTexture("summer-scene.jpg", 2);
+	loadTexture("sky.jpg", 3);
 	loadTexture("obstacle.jpg", 4);
-
+	loadTexture("win2.jpg", 5);
 
 	glutFullScreen();
 	ShowWindow(GetConsoleWindow(), 0);
@@ -568,7 +575,7 @@ int main(int argc, char** argv) {
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
-	glutCreateWindow("Car Game");
+	glutCreateWindow("Car driving");
 
 	init();
 
@@ -583,6 +590,7 @@ int main(int argc, char** argv) {
 	glutSpecialFunc(specialKeys);
 
 	glutMainLoop();
+
 
 	system("pause");
 	return 0;

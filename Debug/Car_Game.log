@@ -1,0 +1,6 @@
+﻿  Source.cpp
+F:\Graphic\3D_Car_Game\Car_Game\Car_Game\Source.cpp(150,20): warning C4018: '<': signed/unsigned mismatch
+F:\Graphic\3D_Car_Game\Car_Game\Car_Game\Source.cpp(171,20): warning C4018: '<': signed/unsigned mismatch
+F:\Graphic\3D_Car_Game\Car_Game\Car_Game\Source.cpp(192,20): warning C4018: '<': signed/unsigned mismatch
+F:\Graphic\3D_Car_Game\Car_Game\Car_Game\Source.cpp(243,20): warning C4018: '<': signed/unsigned mismatch
+  Car_Game.vcxproj -> F:\Graphic\3D_Car_Game\Car_Game\Debug\Car_Game.exe

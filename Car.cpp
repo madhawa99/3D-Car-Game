@@ -1,11 +1,7 @@
 #include "Car.h"
 #include <iostream>
-#include <string>
-#include <vector>
-#include <cmath>  
-#include <algorithm> 
-#include <cstdlib> 
-#include <Gl/glut.h>
+#include <cmath>
+#include <gl/glut.h>
 
 
 
